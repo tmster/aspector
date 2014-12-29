@@ -1,3 +1,5 @@
+require 'erb'
+
 module Aspector
   class Interception
     attr_reader :aspect, :target, :options
@@ -8,6 +10,10 @@ module Aspector
       @options = options
 
       @wrapped_methods = {}
+    end
+
+    def disabled?
+      @aspect.disabled?
     end
 
     def advices
@@ -214,7 +220,7 @@ module Aspector
     end
 
     def recreate_method_with_advices method, before_advices, after_advices, around_advice, is_outermost = false
-      aspect = @aspect
+      aspect = self
       logger = @logger
       orig_method = get_wrapped_method_of method
 
