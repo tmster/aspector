@@ -3,20 +3,9 @@ require 'erb'
 module Aspector
   class Base
 
-    attr :target
     attr :options
 
-    def initialize target, options = {}
-      @target = target
-
-      default_options = self.class.default_options
-      if default_options and not default_options.empty?
-        @options = default_options.merge(options)
-      else
-        @options = options
-      end
-
-      @wrapped_methods = {}
+    def initialize
     end
 
     def disabled?
@@ -35,8 +24,18 @@ module Aspector
       self.class.advices
     end
 
-    def apply
-      include_extension_module
+    def apply target, options = {}
+      @target = target
+
+      default_options = self.class.default_options
+      if default_options and not default_options.empty?
+        @options = default_options.merge(options)
+      else
+        @options = options
+      end
+
+      @wrapped_methods = {}
+
       invoke_deferred_logics
       define_methods_for_advice_blocks
       add_to_instances unless @options[:old_methods_only]
@@ -96,12 +95,6 @@ module Aspector
     end
 
     private
-
-    def include_extension_module
-      if self.class.const_defined?(:ToBeIncluded)
-        context.send(:include, self.class.const_get(:ToBeIncluded))
-      end
-    end
 
     def deferred_logic_results logic
       @deferred_logic_results[logic]

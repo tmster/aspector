@@ -41,8 +41,8 @@ module Aspector
         targets = rest.unshift target
         result = targets.map do |target|
           logger.log Logging::INFO, 'apply', target, options.inspect
-          aspect_instance = new(target, options)
-          aspect_instance.send :apply
+          aspect_instance = new
+          aspect_instance.send :apply, target, options
           aspect_instance
         end
 
