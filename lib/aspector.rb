@@ -4,6 +4,7 @@ require 'aspector/logger'
 require 'aspector/object_extension'
 require 'aspector/module_extension'
 
+require 'aspector/interception'
 require 'aspector/base'
 require 'aspector/base_class_methods'
 require 'aspector/advice'
