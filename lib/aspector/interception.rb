@@ -1,6 +1,6 @@
 module Aspector
   class Interception
-    attr :aspect, :target, :options
+    attr_reader :aspect, :target, :options
 
     def initialize aspect, target, options
       @aspect  = aspect
