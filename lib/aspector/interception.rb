@@ -215,6 +215,7 @@ module Aspector
 
     def recreate_method_with_advices method, before_advices, after_advices, around_advice, is_outermost = false
       aspect = @aspect
+      logger = @logger
       orig_method = get_wrapped_method_of method
 
       code = METHOD_TEMPLATE.result(binding)
