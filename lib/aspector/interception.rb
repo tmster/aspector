@@ -28,6 +28,7 @@ module Aspector
       apply_to_methods unless @options[:new_methods_only]
       add_method_hooks unless @options[:old_methods_only]
       # TODO: clear deferred logic results if they are not used in any advice
+      return
     end
 
     def apply_to_methods

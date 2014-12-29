@@ -39,14 +39,13 @@ module Aspector
         options = rest.last.is_a?(Hash) ? rest.pop : {}
 
         targets = rest.unshift target
-        result = targets.map do |target|
+        targets.map do |target|
           logger.log Logging::INFO, 'apply', target, options.inspect
-          aspect_instance = new
-          aspect_instance.send :apply, target, options
-          aspect_instance
+          instance = new
+          instance.send :apply, target, options
         end
 
-        result.size == 1 ? result.first : result
+        return
       end
       
       private
