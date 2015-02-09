@@ -84,9 +84,9 @@ module Aspector
       logger.log Logging::DEBUG, 'apply-to-method', method
 
       scope ||=
-          if context.private_instance_methods.include?(RUBY_VERSION.index('1.9') ? method.to_sym : method.to_s)
+          if context.private_instance_methods.include?(RUBY_VERSION.to_f >= 1.9 ? method.to_sym : method.to_s)
             :private
-          elsif context.protected_instance_methods.include?(RUBY_VERSION.index('1.9') ? method.to_sym : method.to_s)
+          elsif context.protected_instance_methods.include?(RUBY_VERSION.to_f >= 1.9 ? method.to_sym : method.to_s)
             :protected
           else
             :public
