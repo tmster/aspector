@@ -24,6 +24,7 @@ gem install aspector
 
   ##############################
 
+
   require 'aspector'
 
   class TestAspect < Aspector::Base
