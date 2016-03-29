@@ -2,7 +2,7 @@
 {<img src="https://secure.travis-ci.org/gcao/aspector.png" />}[http://travis-ci.org/gcao/aspector]
 
 aspector = ASPECT Oriented Ruby programming
-
+test
 == Highlights
 
 * Encapsulate logic as aspects and apply to multiple targets easily
